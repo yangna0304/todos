@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+    <style type="text/css">
+
+    #root{
+        width:800px;
+        margin: 20px auto;
+        background-color:#dfff00;
+        border-radius: 15px;
+        padding:15px;
+
+    }
+    *{
+        margin:0;
+        padding:0;
+    }
+    li{
+        list-style-type: none;
+        margin-bottom: 10px;
+        padding:0 10px;
+        line-height:40px;
+        background-color: gold;
+        border-radius: 5px;
+        
+    }
+    h1{
+
+        margin:10px 0px;
+    }
+    #enter{
+        margin:10px 0px;
+       
+    }
+    input[type="text"]{
+
+
+        width:550px;
+        border-radius: 5px;
+        border:2px seagreen solid;
+        padding:5px 10px;
+        font-family: "微软雅黑";
+    }
+    input[type="text"]:focus{
+        outline: none;
+    }
+
+    #enter input[type="button"]{
+        padding:5px 92px;
+        border:2px seagreen solid;
+        border-radius: 5px;
+        background-color：yellow;
+        font-family: "微软雅黑";
+    }
+    #enter input[type="button"]:hover{
+        background-color:seagreen;
+
+
+
+    }
+    .del{
+        padding:5px 10px !important;
+        margin-left:20px;
+        border:none;
+        float:right;
+        line-height:20px;
+        margin-top: 5px;
+        
+    
+    
+    }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+    <h1>To Do List</h1>
+    <div id="enter">
+    <input type="text" placeholder="enter todo here" id="todo"> <input type="button" value="ADD" onclick="add()">
+
+    </div>
+
+    <!-- <ul>
+        <li id="1">楼下排队做核酸<input type="button" value="del" class="del"></li>
+        <li id="2">交11月份餐费<input type="button" value="del" class="del"></li>
+        <li id="3">菜鸟驿站取包裹<input type="button" value="del" class="del"></li>
+    </ul> -->
+   </div>
+</body>
+</html>
+
+<script>
+    const todos = [
+        {id: 1, content: '楼下排队做核酸'},
+        {id: 2, content: '交11月份餐费'},
+        {id: 3, content: '菜鸟驿站取包裹'}
+    ];
+
+    let ul = document.createElement('ul');
+    for (let index = 0; index < todos.length; index++) {
+        let li = document.createElement('li');
+        li.innerText = todos[index].content;
+
+        let delbtn = document.createElement('input');
+        delbtn.type = 'button';
+        delbtn.value = 'del';
+        delbtn.className = 'del';
+        li.appendChild(delbtn);
+
+        delbtn.onclick = function () {
+            let delone = this.parentNode;
+            ul.removeChild(delone);
+        };
+
+        ul.appendChild(li);
+    }
+    document.getElementById('root').appendChild(ul);
+
+    function add() {
+        let content = document.querySelector('input').value;
+        if (content == '') {
+            window.alert('不能为空');
+        } else {
+            let li = document.createElement('li');
+            li.innerText = content;
+
+            let delbtn = document.createElement('input');
+            delbtn.type = 'button';
+            delbtn.value = 'del';
+            delbtn.className = 'del';
+
+            delbtn.onclick = function () {
+                let delone = this.parentNode;
+                ul.removeChild(delone);
+            };
+
+            li.appendChild(delbtn);
+            ul.appendChild(li);
+        }
+    }
+</script>
+
+
